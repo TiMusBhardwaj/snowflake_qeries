@@ -94,7 +94,7 @@ generate_object_grant_queries(conn, 'queries', 'DATABASE', 'YourDatabase', 'SCHE
 ```
 
 This function generates a SQL script file named "queries.sql" that contains the queries to grant existing privileges on objects in the "DATABASE" and "SCHEMA". 
-The script grants privileges on existing objects in the specified database and schema.
+The script grants privileges on existing objects in the specified database and schema. If Recursive flag is true it will create a recursive folder hierarchy with grants of all objects.
 
 &nbsp;
 ## Contributing
