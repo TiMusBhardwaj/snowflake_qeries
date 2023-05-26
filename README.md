@@ -2,7 +2,7 @@
 
 
 
-# generate_role_grants_util.py : GRANTS SQL Script Generator
+#  GRANTS SQL Script Generator : generate_role_grants_util.py
 
 This project provides a set of utility functions to generate SQL script files for common tasks related to database management. The functions are designed to simplify the process of generating SQL scripts for creating roles, granting roles and privileges, and managing database objects.
 
@@ -10,8 +10,9 @@ This project provides a set of utility functions to generate SQL script files fo
 
 To use this project, you need to have Python installed. You can install the required dependencies by running the following command:
 
+ &nbsp;  pip install  snowflake-connector
 
-pip install -r requirements.txt
+&nbsp; pip install  deprecated
 
 
 ## Usage
