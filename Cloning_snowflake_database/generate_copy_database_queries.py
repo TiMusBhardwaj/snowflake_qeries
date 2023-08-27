@@ -88,7 +88,7 @@ try:
     
     write_queries_to_file(get_create_database_queries(conn), "create_databases.sql")
 
-    write_queries_to_file(get_create_schema_queries(conn, 'turvo'), "create_schemas.sql")
+    write_queries_to_file(get_create_schema_queries(conn, 'tu'), "create_schemas.sql")
 
    
    

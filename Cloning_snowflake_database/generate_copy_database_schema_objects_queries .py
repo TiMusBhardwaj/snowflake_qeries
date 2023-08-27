@@ -317,10 +317,8 @@ conn=snowflake.connector.connect(
                 )
 #create cursor
 try:
-    #write_queries_to_file(generate_file_format_queries(conn, 'turvo.stage_sp'), "create_stream.sql")
-    #write_queries_to_file(generate_file_format_queries(conn, 'turvo.stage_sp'), "create_file_format.sql")
-    #write_queries_to_file(generate_function_queries(conn, 'turvo.model'), "create_functions.sql")
-    write_queries_to_file(generate_tasks_queries(conn, 'turvo.stage_sp'), "create_tasks.sql")
+   
+    write_queries_to_file(generate_tasks_queries(conn, 'tur.stage'), "create_tasks.sql")
 
 except Exception as e:
     print(f"An error occurred: {str(e)}")
