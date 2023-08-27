@@ -219,6 +219,83 @@ def generate_tasks_queries(connection, schema_name):
 
 
 
+def generate_alert_queries(connection, schema_name):
+    cursor = connection.cursor()
+    cursor.execute(f"SHOW ALERTS IN SCHEMA {schema_name}")
+    alerts_data = cursor.fetchall()
+    cursor.close()
+
+    alert_queries = []
+
+    for row in alerts_data:
+        alert_name = row[1]  # Assuming the alert name is in the second column
+        ddl_query = f"SELECT GET_DDL('alert', '{schema_name}.{alert_name}')"
+        cursor = connection.cursor()
+        cursor.execute(ddl_query)
+        alert_query = cursor.fetchone()[0]
+        cursor.close()
+        alert_queries.append(alert_query)
+
+    return alert_queries
+
+def generate_sequence_queries(connection, schema_name):
+    cursor = connection.cursor()
+    cursor.execute(f"SHOW SEQUENCES IN SCHEMA {schema_name}")
+    sequences_data = cursor.fetchall()
+    cursor.close()
+
+    sequence_queries = []
+
+    for row in sequences_data:
+        sequence_name = row[1]  # Assuming the sequence name is in the second column
+        ddl_query = f"SELECT GET_DDL('sequence', '{schema_name}.{sequence_name}')"
+        cursor = connection.cursor()
+        cursor.execute(ddl_query)
+        sequence_query = cursor.fetchone()[0]
+        cursor.close()
+        sequence_queries.append(sequence_query)
+
+    return sequence_queries
+
+def generate_masking_policy_queries(connection, schema_name):
+    cursor = connection.cursor()
+    cursor.execute(f"SHOW MASKING POLICIES IN SCHEMA {schema_name}")
+    masking_policies_data = cursor.fetchall()
+    cursor.close()
+
+    masking_policy_queries = []
+
+    for row in masking_policies_data:
+        masking_policy_name = row[1]  # Assuming the masking policy name is in the second column
+        ddl_query = f"SELECT GET_DDL('policy', '{schema_name}.{masking_policy_name}')"
+        cursor = connection.cursor()
+        cursor.execute(ddl_query)
+        masking_policy_query = cursor.fetchone()[0]
+        cursor.close()
+        masking_policy_queries.append(masking_policy_query)
+
+    return masking_policy_queries
+
+def generate_row_access_policy_queries(connection, schema_name):
+    cursor = connection.cursor()
+    cursor.execute(f"SHOW ROW ACCESS POLICIES IN SCHEMA {schema_name}")
+    row_access_policies_data = cursor.fetchall()
+    cursor.close()
+
+    row_access_policy_queries = []
+
+    for row in row_access_policies_data:
+        row_access_policy_name = row[1]  # Assuming the row access policy name is in the second column
+        ddl_query = f"SELECT GET_DDL('policy', '{schema_name}.{row_access_policy_name}')"
+        cursor = connection.cursor()
+        cursor.execute(ddl_query)
+        row_access_policy_query = cursor.fetchone()[0]
+        cursor.close()
+        row_access_policy_queries.append(row_access_policy_query)
+
+    return row_access_policy_queries
+
+
 def write_queries_to_file(queries, filename):
     with open(filename, 'w') as file:
         for query in queries:
